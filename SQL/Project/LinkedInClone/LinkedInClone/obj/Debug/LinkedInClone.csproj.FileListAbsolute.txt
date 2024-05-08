@@ -1,0 +1,11 @@
+C:\Users\Zaing\source\repos\LinkedInClone\LinkedInClone\bin\Debug\LinkedInClone.exe.config
+C:\Users\Zaing\source\repos\LinkedInClone\LinkedInClone\bin\Debug\LinkedInClone.exe
+C:\Users\Zaing\source\repos\LinkedInClone\LinkedInClone\bin\Debug\LinkedInClone.pdb
+C:\Users\Zaing\source\repos\LinkedInClone\LinkedInClone\obj\Debug\LinkedInClone.csproj.AssemblyReference.cache
+C:\Users\Zaing\source\repos\LinkedInClone\LinkedInClone\obj\Debug\LinkedInClone.csproj.SuggestedBindingRedirects.cache
+C:\Users\Zaing\source\repos\LinkedInClone\LinkedInClone\obj\Debug\LinkedInClone.Form1.resources
+C:\Users\Zaing\source\repos\LinkedInClone\LinkedInClone\obj\Debug\LinkedInClone.Properties.Resources.resources
+C:\Users\Zaing\source\repos\LinkedInClone\LinkedInClone\obj\Debug\LinkedInClone.csproj.GenerateResource.cache
+C:\Users\Zaing\source\repos\LinkedInClone\LinkedInClone\obj\Debug\LinkedInClone.csproj.CoreCompileInputs.cache
+C:\Users\Zaing\source\repos\LinkedInClone\LinkedInClone\obj\Debug\LinkedInClone.exe
+C:\Users\Zaing\source\repos\LinkedInClone\LinkedInClone\obj\Debug\LinkedInClone.pdb

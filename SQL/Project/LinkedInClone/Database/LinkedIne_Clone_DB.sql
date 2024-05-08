@@ -1,0 +1,108 @@
+CREATE DATABASE LINKEDINE_CLONE; 
+USE LINKEDINE_CLONE;
+
+CREATE TABLE Users (
+	UserID INT IDENTITY(1,1) PRIMARY KEY ,
+	FirstName VARCHAR (50) NOT NULL ,
+	LastName VARCHAR (50) NOT NULL ,
+	Email VARCHAR (80) UNIQUE NOT NULL ,
+	Password VARCHAR (50) NOT NULL ,
+	Status BIT DEFAULT (0),
+	CHECK (DATALENGTH(password) >= 8));
+
+
+CREATE TABLE Post (
+	Post_id INT IDENTITY(1,1) PRIMARY KEY ,
+	Post_Title VARCHAR(150),
+	Post_Content NVARCHAR(MAX) NOT NULL,
+	Timestamp DATETIME DEFAULT(GETDATE()),
+	UserID INT NOT NULL,
+	NoOfLikes INT DEFAULT(0) ,
+	NoOfComments INT  DEFAULT (0) ,
+	FOREIGN KEY (UserID) REFERENCES Users(UserID));
+
+
+CREATE TABLE User_Profile (
+	Profile_id INT IDENTITY (1,1) PRIMARY KEY,
+    First_Name VARCHAR(25) NOT NULL,
+	Last_Name VARCHAR(25) NOT NULL,
+	UserID INT NOT NULL,
+	User_Location VARCHAR(100),
+	PhoneNo VARCHAR (11) NOT NULL,
+	FOREIGN KEY (UserID) REFERENCES Users(UserID));
+
+
+CREATE TABLE User_Education (
+	Education_id INT PRIMARY KEY,
+	Profile_id INT NOT NULL,
+    Institute_Name VARCHAR(100) NOT NULL,
+	Degree VARCHAR(70) NOT NULL,
+	Starting_date DATE NOT NULL,
+	Ending_date DATE,
+	FOREIGN KEY (Profile_id) REFERENCES User_Profile(Profile_id));
+
+
+CREATE TABLE User_ProfessionalSkills (
+	Profession_id INT PRIMARY KEY,
+	Profile_id INT NOT NULL,
+    Company_Name VARCHAR(100) NOT NULL,
+	JobPosition VARCHAR(70) NOT NULL,
+	JobDescription VARCHAR(250) NOT NULL,
+	Starting_date DATE NOT NULL,
+	Ending_date DATE,
+	FOREIGN KEY (Profile_id) REFERENCES User_Profile(Profile_id));
+
+
+
+
+
+
+CREATE TABLE Likes (
+	Likeid INT IDENTITY (1,1) PRIMARY KEY,
+	Post_id INT NOT NULL,
+	UserID INT NOT NULL,
+	FOREIGN KEY (UserID) REFERENCES Users(UserID),
+	FOREIGN KEY (Post_id) REFERENCES Post(Post_id));
+
+
+CREATE TABLE Comments (
+	Cmntid INT IDENTITY (1,1) PRIMARY KEY,
+	Post_id INT NOT NULL,
+	UserID INT NOT NULL,
+	CmntTxt NVARCHAR(MAX) NOT NULL,
+	timestamp DATE NOT NULL DEFAULT (GETDATE()),
+	FOREIGN KEY (UserID) REFERENCES Users(UserID),
+	FOREIGN KEY (Post_id) REFERENCES Post(Post_id));
+
+
+CREATE TABLE JobAdds (
+	JOBID INT PRIMARY KEY,
+	UserID INT NOT NULL,
+	Profile_id INT NOT NULL,
+	JobPosition VARCHAR(75) NOT NULL,
+	JobDescription VARCHAR(250) NOT NULL,
+	JobRequirements VARCHAR(250) NOT NULL,
+	Deadline DATE NOT NULL,
+	FOREIGN KEY (UserID) REFERENCES Users(UserID),
+	FOREIGN KEY (Profile_id) REFERENCES User_Profile(Profile_id));
+
+
+CREATE TABLE JobApplication (
+	App_id INT IDENTITY (1,1) PRIMARY KEY,
+	JOBID INT NOT NULL,
+	UserID INT NOT NULL,
+	Profile_id INT NOT NULL,
+	Resume_CV NVARCHAR(MAX) NOT NULL,
+	CoverLetter NVARCHAR(MAX) NOT NULL,
+	ApplyDate DATE NOT NULL,
+	FOREIGN KEY (UserID) REFERENCES Users(UserID),
+	FOREIGN KEY (Profile_id) REFERENCES User_Profile(Profile_id),
+	FOREIGN KEY (JOBID) REFERENCES JobAdds(JOBID));
+
+
+CREATE TABLE User_Connection (
+	Conn_ID INT PRIMARY KEY,
+	UserID INT NOT NULL,
+	ConnUserID INT NOT NULL,
+	FOREIGN KEY (UserID) REFERENCES Users(UserID),
+	FOREIGN KEY (ConnUserID) REFERENCES Users(UserID));
